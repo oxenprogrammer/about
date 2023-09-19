@@ -1,7 +1,6 @@
 import { FunctionComponent, useEffect } from 'react'
 
 import classNames from 'classnames'
-import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Tweet } from 'react-tweet/api'
 
@@ -20,16 +19,10 @@ import {
 import { DemoVideo } from '../../components/DemoVideo'
 import { useAuthModal } from '../../context/AuthModalContext'
 import { EventName, getEventLogger } from '../../hooks/eventLogger'
-import { preloadTweets } from '../../util'
-import { CODY_PAGE_TWEET_IDS } from '../constants'
 
 import styles from '../../styles/CustomHubspotForm.module.scss'
 
-interface CodyProps {
-    tweets: (Tweet | undefined)[]
-}
-
-const DemoCodyPage: FunctionComponent<CodyProps> = ({ tweets }) => {
+const DemoCodyPage: FunctionComponent = () => {
     const { openModal } = useAuthModal()
 
     const handleOpenModal = (description: string): void => {
@@ -122,17 +115,6 @@ const DemoCodyPage: FunctionComponent<CodyProps> = ({ tweets }) => {
             </div>
 
             <ContentSection
-                parentClassName="text-center !pb-0 pt-16 !md:pt-[96px]"
-                className="-mb-[25px] md:-mb-[137px]"
-            >
-                <Heading size="h2" className="text-white">
-                    See what devs are building with Cody
-                </Heading>
-
-                <CodyTweets tweets={tweets} />
-            </ContentSection>
-
-            <ContentSection
                 parentClassName="!py-0"
                 className="mx-auto flex flex-col items-center justify-center gap-x-8 py-24  md:flex-row md:items-start md:pb-[112px] md:pt-[208px]"
             >
@@ -201,9 +183,5 @@ const DemoCodyPage: FunctionComponent<CodyProps> = ({ tweets }) => {
         </Layout>
     )
 }
-
-export const getStaticProps: GetStaticProps<CodyProps> = async () => ({
-    props: { tweets: await preloadTweets(CODY_PAGE_TWEET_IDS) },
-})
 
 export default DemoCodyPage
