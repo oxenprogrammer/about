@@ -2,7 +2,6 @@ import { FunctionComponent, useEffect } from 'react'
 
 import classNames from 'classnames'
 import Link from 'next/link'
-import { Tweet } from 'react-tweet/api'
 
 import {
     ContentSection,
@@ -14,7 +13,6 @@ import {
     CodySteps,
     CodebaseAwareIntelligence,
     AiGeneratedCode,
-    CodyTweets,
 } from '../../components'
 import { DemoVideo } from '../../components/DemoVideo'
 import { useAuthModal } from '../../context/AuthModalContext'
